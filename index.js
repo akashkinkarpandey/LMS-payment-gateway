@@ -9,6 +9,8 @@ import  sanitizer  from "perfect-express-sanitizer";
 import { rateLimit } from "express-rate-limit";
 import helmet from "helmet";
 import cors from "cors"
+import healthRoue from "./routes/health.routes.js"
+
 
 const app=express()
 const PORT=process.env.PORT || 3001
@@ -63,6 +65,9 @@ app.use((err,req,res,next)=>{
         }
     )
 })
+
+app.use("/health",healthRoue)
+
 
 app.use((req,res)=>{
     res.status(404).json({
